@@ -1,3 +1,3 @@
 # feature-request
 
-Dependencies: Python 2.7, Flask, Knockout
+Dependencies: Python 2.7, Flask, SQLAlchemy

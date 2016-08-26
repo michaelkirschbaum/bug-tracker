@@ -7,9 +7,9 @@
   <body>
     <h1>Request</h1>
 
-    <form>
-      Title<input type="text" name="title"><br>
-      Description<input type="text" name="description"><br>
+    <form data-bind="submit: request">
+      Title<input data-bind="textInput: title"><br>
+      Description<input type="text" data-bind="textInput: description"><br>
       Client<input type="radio" name="client"><br>
       Client Priority<input type="range" name="priority"><br>
       Target Date<input type="date" name="date"><br>
@@ -17,5 +17,13 @@
       Product Area<input type="radio" name="area"><br>
       <button type="submit">Submit</button>
     </form>
+
+    <script type="text/javascript">
+      function RequestModel() {};
+
+      function RequestViewModel() {};
+
+      ko.applyBindings();
+    </script>
   </body>
 </html>
