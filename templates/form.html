@@ -9,18 +9,23 @@
 
     <form data-bind="submit: request">
       Title<input data-bind="textInput: title"><br>
-      Description<input type="text" data-bind="textInput: description"><br>
+      Description<textarea cols="50" rows="6" data-bind="value: description"></textarea><br>
       Client<input type="radio" name="client"><br>
       Client Priority<input type="range" name="priority"><br>
       Target Date<input type="date" name="date"><br>
-      Target URL<input type="text" name="url"><br>
+      Target URL<input type="url" name="url"><br>
       Product Area<input type="radio" name="area"><br>
       <button type="submit">Submit</button>
     </form>
 
     <script type="text/javascript">
       var RequestViewModel() {
-        request : function(formElement) {}
+        request : function(formElement) {
+          var url = "http://localhost:5000/submit";
+          var req = new XMLHttpRequest();
+          req.open("POST", url, true);
+          req.send();
+        }
       };
 
       ko.applyBindings(RequestViewModel);

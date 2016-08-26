@@ -12,8 +12,9 @@ app = Flask(__name__)
 def getForm():
   return render_template('form.html')
 
-@app.route("/submit")
-def request(): pass
+@app.route("/submit", methods=['POST'])
+def request():
+  return "Request submitted."
 
 if __name__ == "__main__":
   app.run()
