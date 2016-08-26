@@ -19,9 +19,11 @@
     </form>
 
     <script type="text/javascript">
-      function RequestViewModel() {};
+      var RequestViewModel() {
+        request : function(formElement) {}
+      };
 
-      ko.applyBindings(new RequestViewModel());
+      ko.applyBindings(RequestViewModel);
     </script>
   </body>
 </html>

@@ -9,8 +9,11 @@ app = Flask(__name__)
 
 # routes
 @app.route("/")
-def index():
-  return render_template('index.html')
+def getForm():
+  return render_template('form.html')
+
+@app.route("/submit")
+def request(): pass
 
 if __name__ == "__main__":
   app.run()
