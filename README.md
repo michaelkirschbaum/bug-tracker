@@ -1,5 +1,3 @@
 # feature-request
 
-Criteria: Title, Description, Client, Client Priority, Target Date, Ticket URL, Product Area
-
-Dependencies: Python 2.7, Flask
+Dependencies: Python 2.7, Flask, Knockout
