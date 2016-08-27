@@ -8,7 +8,7 @@
     <h1>Request</h1>
 
     <form data-bind="submit: request">
-      Title<input data-bind="textInput: title"><br>
+      Title<input type="text" name="title"><br>
       Description<textarea cols="50" rows="6" data-bind="value: description"></textarea><br>
       Client<input type="radio" name="client"><br>
       Client Priority<input type="range" name="priority"><br>
@@ -19,8 +19,8 @@
     </form>
 
     <script type="text/javascript">
-      var RequestViewModel() {
-        request : function(formElement) {
+      var requestViewModel = {
+        request : function() {
           var url = "http://localhost:5000/submit";
           var req = new XMLHttpRequest();
           req.open("POST", url, true);
@@ -28,7 +28,7 @@
         }
       };
 
-      ko.applyBindings(RequestViewModel);
+      ko.applyBindings(RequestViewModel());
     </script>
   </body>
 </html>
