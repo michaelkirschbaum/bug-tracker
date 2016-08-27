@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Feature Requests</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
   </head>
   <body>
     <h1>Request</h1>
@@ -21,6 +22,7 @@
     <script type="text/javascript">
       var requestViewModel = {
         request : function() {
+          console.log("Sending request...");
           var url = "http://localhost:5000/submit";
           var req = new XMLHttpRequest();
           req.open("POST", url, true);
