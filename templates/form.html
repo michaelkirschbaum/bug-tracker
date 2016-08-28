@@ -29,10 +29,14 @@
         url: ko.observable(),
         area: ko.observable(),
 
-        request: function() {}
+        request: function() {
+          var connection = new XMLHttpRequest();
+          connection.open("POST", "http://localhost:5000/submit", true);
+          connection.send();
+        }
       };
 
-      ko.applyBindings(RequestViewModel);
+      ko.applyBindings(requestViewModel);
     </script>
   </body>
 </html>

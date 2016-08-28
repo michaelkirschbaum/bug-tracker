@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask import Flask
-from flask import render_template
+from flask_sqlalchemy import SQlAlchemy
 import sqlalchemy
 
 # setup flask
@@ -12,8 +12,9 @@ app = Flask(__name__)
 def getForm():
   return render_template('form.html')
 
-@app.route("/submit")
-def request(): pass
+@app.route("/submit", methods=['POST'])
+def request(): 
+  pass
 
 if __name__ == "__main__":
   app.run()
