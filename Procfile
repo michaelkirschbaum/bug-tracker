@@ -1,1 +1,1 @@
-web: . venv/bin/activate; python app.py
+web: gunicorn app:app

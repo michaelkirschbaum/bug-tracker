@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy
+from flask_migrate import Migrate
 
 # setup flask
 app = Flask(__name__)
