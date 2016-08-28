@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-from flask import Flask
-from flask_sqlalchemy import SQlAlchemy
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 import sqlalchemy
 
 # setup flask
