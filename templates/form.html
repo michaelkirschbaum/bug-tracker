@@ -9,12 +9,27 @@
     <h1>Request</h1>
 
     <form data-bind="submit: request">
+      Title<input data-bind="textInput: title"><br>
+      Description<input data-bind="textInput: description"><br>
+      Client<input data-bind="textInput: client"><br>
+      Client Priority<input data-bind="textInput: priority"><br>
+      Target Date<input data-bind="textInput: date"><br>
+      Target URL<input data-bind="textInput: url"><br>
+      Product Area<input data-bind="textInput: area"><br>
       <button type="submit">Submit</button>
     </form>
 
     <script type="text/javascript">
-      var RequestViewModel = {
-        request : function(formElement) {}
+      var requestViewModel = {
+        title: ko.observable(),
+        description: ko.observable(),
+        client: ko.observable(),
+        priority: ko.observable(),
+        date: ko.observable(),
+        url: ko.observable(),
+        area: ko.observable(),
+
+        request: function() {}
       };
 
       ko.applyBindings(RequestViewModel);
