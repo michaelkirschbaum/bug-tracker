@@ -9,28 +9,15 @@
     <h1>Request</h1>
 
     <form data-bind="submit: request">
-      Title<input type="text" name="title"><br>
-      Description<textarea cols="50" rows="6" data-bind="value: description"></textarea><br>
-      Client<input type="radio" name="client"><br>
-      Client Priority<input type="range" name="priority"><br>
-      Target Date<input type="date" name="date"><br>
-      Target URL<input type="url" name="url"><br>
-      Product Area<input type="radio" name="area"><br>
       <button type="submit">Submit</button>
     </form>
 
     <script type="text/javascript">
-      var requestViewModel = {
-        request : function() {
-          console.log("Sending request...");
-          var url = "http://localhost:5000/submit";
-          var req = new XMLHttpRequest();
-          req.open("POST", url, true);
-          req.send();
-        }
+      var RequestViewModel = {
+        request : function(formElement) {}
       };
 
-      ko.applyBindings(RequestViewModel());
+      ko.applyBindings(RequestViewModel);
     </script>
   </body>
 </html>
