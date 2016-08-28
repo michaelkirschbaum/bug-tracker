@@ -13,8 +13,7 @@ def getForm():
   return render_template('form.html')
 
 @app.route("/submit", methods=['POST'])
-def request(): 
-  pass
+def request(): pass
 
 if __name__ == "__main__":
-  app.run(host="0.0.0.0")
+  app.run()
