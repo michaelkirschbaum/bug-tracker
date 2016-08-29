@@ -1,6 +1,7 @@
 import os
 import unittest
 import tempfile
+import app
 
 class AppTest(unittest.TestCase):
   def setUp(): pass
