@@ -18,7 +18,7 @@ def getForm():
 from manage import db, Feature
 @app.route("/submit", methods=['POST'])
 def submit_feature():
-  feature = Feature()
+  feature = Feature('', '', '', '', '', '', '')
   db.session.add(feature)
   db.session.commit()
 
