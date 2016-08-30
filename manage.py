@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 '''
-Configures database and migrations for app.
+Database and migrations build script.
 '''
 
 import os
@@ -10,17 +10,17 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
-# setup database
+# configure database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
-# setup migrations
+# setup migrations script
 migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-# User request model
+# models
 class Feature(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   title = db.Column(db.String(128))
