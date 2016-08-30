@@ -16,8 +16,10 @@ def getForm():
   return render_template('form.html')
 
 from manage import db, Feature
+
 @app.route("/submit", methods=['POST'])
 def submit_feature():
+  # receive JSON object
   params = request.get_json()
 
   # store new feature

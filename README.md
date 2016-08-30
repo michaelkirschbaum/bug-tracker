@@ -13,4 +13,8 @@
 
   'python app.py'
 
-Direct browser to http://localhost:5000
+  Direct browser to http://localhost:5000
+
+## Test:
+
+  'python -m feature-request.tests.app_test'
