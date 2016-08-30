@@ -1,7 +1,5 @@
 # Feature Requests
 
-Submit client feature requests.
-
 Dependencies:
 
   Flask, Python 2.7, SQLAlchemy, Flask-Migrate
