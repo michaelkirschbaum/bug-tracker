@@ -1,15 +1,15 @@
 # Feature Requests
 
-Dependencies:
+## Dependencies:
 
   Flask, Python 2.7, SQLAlchemy, Flask-Migrate
 
-Build database:
+## Build database:
 
   'python manage.py db migrate'
   'python manage.py db upgrade'
 
-Run:
+## Run:
 
   'python app.py'
 
