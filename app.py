@@ -5,6 +5,7 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request
+import json
 
 # setup flask
 app = Flask(__name__)
@@ -14,11 +15,14 @@ app = Flask(__name__)
 def getForm():
   return render_template('form.html')
 
-# store form
 from manage import db, Feature
 @app.route("/submit", methods=['POST'])
 def submit_feature():
-  feature = Feature('', '', '', '', '', '', '')
+  params = request.get_json()
+
+  # store new feature
+  feature = Feature(params['title'], params['description'], params['client'], \
+                params['priority'], params['date'], params['url'], params['area'])
   db.session.add(feature)
   db.session.commit()
 

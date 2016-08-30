@@ -37,9 +37,8 @@
           var url = "http://localhost:5000/submit"
           var connection = new XMLHttpRequest();
           connection.open("POST", url, true);
-          connection.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          connection.send("title=this.title()&description=this.description()&client=this.client()& \
-                           priority=this.priority()&date=this.date()&url=this.url()&area=this.area()");
+          connection.setRequestHeader("Content-type", "application/json");
+          connection.send(ko.toJSON(this));
         }
       };
 
