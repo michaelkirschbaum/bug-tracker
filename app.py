@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 # routes
 @app.route("/")
-def getForm():
+def get_form():
   return render_template('form.html')
 
 from manage import db, Feature
