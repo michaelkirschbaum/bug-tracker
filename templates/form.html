@@ -18,11 +18,11 @@
     <form data-bind="submit: request">
       Title<input data-bind="textInput: title"><br>
       Description<textarea data-bind="value: description" rows="4" cols="50"></textarea><br>
-      Client<select data-bind="options: client"></select><br>
-      Client Priority<input data-bind="value: priority"><br>
+      Client<select data-bind="options: client, value: selectedClient"></select><br>
+      Priority<input data-bind="value: priority"><br>
       Target Date<input data-bind="textInput: date"><br>
       Target URL<input data-bind="textInput: url"><br>
-      Product Area<select data-bind="options: area"></select><br>
+      Product Area<select data-bind="options: area, value: selectedArea"></select><br>
       <button type="submit">Submit</button>
     </form>
 
@@ -31,10 +31,12 @@
         title: ko.observable(),
         description: ko.observable(),
         client: ko.observableArray(['', 'Client A', 'Client B', 'Client C']),
+        selectedClient: ko.observable(''),
         priority: ko.observable(),
         date: ko.observable(),
         url: ko.observable(),
         area: ko.observableArray(['', 'Policies', 'Billing', 'Claims', 'Reports']),
+        selectedArea: ko.observable(''),
 
         request: function() {
           var url = "http://localhost:5000/submit"

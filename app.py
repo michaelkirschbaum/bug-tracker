@@ -23,8 +23,8 @@ def submit_feature():
   params = request.get_json()
 
   # store new feature
-  feature = Feature(params['title'], params['description'], params['client'], \
-                params['priority'], params['date'], params['url'], params['area'])
+  feature = Feature(params['title'], params['description'], params['selectedClient'], \
+                params['priority'], params['date'], params['url'], params['selectedArea'])
   db.session.add(feature)
   db.session.commit()
   return render_template('form.html')
