@@ -9,15 +9,9 @@ from app import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from setup import dev_name
 
 # configure database
-url = os.getenv("DATABASE_URL")
-if url is None:
-  app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://localhost/" + dev_name
-else:
-  app.config['SQLALCHEMY_DATABASE_URI'] = url
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
