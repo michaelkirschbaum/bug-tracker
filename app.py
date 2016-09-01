@@ -27,6 +27,7 @@ def submit_feature():
                 params['priority'], params['date'], params['url'], params['area'])
   db.session.add(feature)
   db.session.commit()
+  # return
 
 if __name__ == "__main__":
   app.run()
