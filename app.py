@@ -4,7 +4,7 @@
 Feature request server.
 '''
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import json
 
 # setup flask
@@ -12,13 +12,13 @@ app = Flask(__name__)
 
 # routes
 @app.route("/")
-def get_form():
+def form():
   return render_template('form.html')
 
 from manage import db, Feature
 
 @app.route("/submit", methods=['POST'])
-def submit_feature():
+def submit():
   # receive JSON object
   params = request.get_json()
 
@@ -27,7 +27,7 @@ def submit_feature():
                 params['priority'], params['date'], params['url'], params['selectedArea'])
   db.session.add(feature)
   db.session.commit()
-  return render_template('form.html')
+  return redirect(url_for('form'))
 
 if __name__ == "__main__":
   app.run()

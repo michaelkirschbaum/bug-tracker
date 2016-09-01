@@ -17,13 +17,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
 
     <form data-bind="submit: request">
-      Title<input data-bind="textInput: title"><br>
-      Description<textarea data-bind="value: description" rows="4" cols="50"></textarea><br>
-      Client<select data-bind="options: client, value: selectedClient"></select><br>
-      Priority<input data-bind="value: priority"><br>
-      Target Date<input data-bind="textInput: date"><br>
-      Target URL<input data-bind="textInput: url"><br>
-      Product Area<select data-bind="options: area, value: selectedArea"></select><br>
+      Title<input class="form-control form-control-sm" data-bind="textInput: title"><br>
+      Description<textarea class="form-control form-control-sm" data-bind="value: description" rows="4" cols="50"></textarea><br>
+      Client<select class="form-control form-control-sm" data-bind="options: client, value: selectedClient"></select><br>
+      Priority<input class="form-control form-control-sm" data-bind="value: priority"><br>
+      Target Date<input class="form-control form-control-sm" data-bind="textInput: date"><br>
+      Target URL<input class="form-control form-control-sm" data-bind="textInput: url"><br>
+      Product Area<select class="form-control form-control-sm" data-bind="options: area, value: selectedArea"></select><br>
       <button type="submit">Submit</button>
     </form>
 
