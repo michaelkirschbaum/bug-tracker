@@ -21,7 +21,7 @@ class AppTest(unittest.TestCase):
     self.assertEqual(response.status_code, 200)
 
   def test_submit_feature(self):
-    response = self.app.post('/submit', content_type='application/json', \
+    self.app.post('/submit', content_type='application/json', \
         data='{"title": "Feature", "description": "New feature request.", \
         "client": "Client A", "priority": "1", "date": "09/01/2016", \
         "url": "http://localhost", "area": "Reports"}')
