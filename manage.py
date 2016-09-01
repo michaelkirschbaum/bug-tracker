@@ -9,12 +9,31 @@ from app import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-import psycopg2
+from psycopg2 import connect
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+# connect to database
+conn = connect("dbname=postgres user=postgres")
+conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+cur = conn.cursor()
 
 # create development and test databases
+dev_name = "feature_request_development"
+test_name = "feature_request_test"
+cur.execute("CREATE DATABASE " + dev_name + ";")
+cur.execute("CREATE DATABASE " + test_name + ";")
+conn.commit()
+
+cur.close()
+conn.close()
 
 # configure database
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+url = os.getenv("DATABASE_URL")
+if url is None:
+  app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://localhost/" + dev_name
+else:
+  app.config['SQLALCHEMY_DATABASE_URI'] = url
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 
