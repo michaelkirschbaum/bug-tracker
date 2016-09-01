@@ -23,13 +23,13 @@ manager.add_command('db', MigrateCommand)
 # models
 class Feature(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  title = db.Column(db.String(128))
-  description = db.Column(db.String(128))
-  client = db.Column(db.String(128))
-  priority = db.Column(db.String(128))
-  date = db.Column(db.String(128))
-  url = db.Column(db.String(128))
-  area = db.Column(db.String(128))
+  title = db.Column(db.String(32))
+  description = db.Column(db.String(1000))
+  client = db.Column(db.String(8))
+  priority = db.Column(db.Integer)
+  date = db.Column(db.Date)
+  url = db.Column(db.String(32))
+  area = db.Column(db.String(10))
 
   def __init__(self, title, description, client, priority, date, url, area):
     self.title = title
