@@ -2,7 +2,7 @@ import os
 import unittest
 import tempfile
 from ..app import app
-from ..manage import db
+from ..manage import db, Feature
 
 class AppTest(unittest.TestCase):
   def setUp(self):
@@ -19,7 +19,8 @@ class AppTest(unittest.TestCase):
     response = self.app.get('/')
     self.assertEqual(response.status_code, 200)
 
-  def test_submit_feature(self): pass
+  def test_submit_feature(self):
+    feature = Feature()
 
 if __name__ == '__main__':
   unittest.main()
