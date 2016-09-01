@@ -3,7 +3,6 @@
 import os
 from psycopg2 import connect
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
-from manage import dev_name, test_name
 
 # connect to database
 conn = connect("dbname=postgres user=postgres")
@@ -21,6 +20,4 @@ conn.commit()
 cur.close()
 conn.close()
 
-# configure environment
-os.environ["DATABASE_URL"] = "postgres://localhost/" + dev_name
-os.environ["DATABASE_TEST_URL"] = "postgres://localhost/" + dev_test
+# configure enviornment
