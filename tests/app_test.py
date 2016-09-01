@@ -3,7 +3,6 @@ import unittest
 import tempfile
 from ..app import app
 from ..manage import db, Feature
-from werkzeug.test import EnvironBuilder
 
 class AppTest(unittest.TestCase):
   def setUp(self):
@@ -25,6 +24,11 @@ class AppTest(unittest.TestCase):
         data='{"title": "Feature", "description": "New feature request.", \
         "client": "Client A", "priority": "1", "date": "09/01/2016", \
         "url": "http://localhost", "area": "Reports"}')
+
+    feature = Feature("Feature", "New feature request.", "Client A", "1", \
+        "09/01/2016", "http://localhost", "Reports")
+
+    assert feature in Feature.query.all()
 
 if __name__ == '__main__':
   unittest.main()
