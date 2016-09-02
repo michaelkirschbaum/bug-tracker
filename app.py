@@ -27,7 +27,7 @@ def submit():
                 params['priority'], params['date'], params['url'], params['selectedArea'])
   db.session.add(feature)
   db.session.commit()
-  return redirect(url_for('form'))
+  return redirect(url_for('submission'))
 
 if __name__ == "__main__":
   app.run()

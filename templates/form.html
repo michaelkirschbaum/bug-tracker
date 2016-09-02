@@ -48,7 +48,8 @@
           var connection = new XMLHttpRequest();
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/json");
-          connection.send(ko.toJSON(this));
+          var response = connection.send(ko.toJSON(this));
+          window.location = "http://localhost"
         }
       };
 
