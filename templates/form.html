@@ -13,7 +13,7 @@
 
   <style>
     body {
-      background-color: powderblue;
+      background-color: grey;
     }
   </style>
 
@@ -27,7 +27,7 @@
     <div class="col-xs-4">
       <form data-bind="submit: request">
         Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
-        Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="(optional)"></textarea>
+        Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="(Optional)"></textarea>
         Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
         Priority<input class="form-control" data-bind="value: priority" type="number" min=1 max=5>
         Target Date<input class="form-control" data-bind="textInput: date" type="date" placeholder="mm/dd/yyyy" required>
@@ -55,7 +55,7 @@
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/json");
           var response = connection.send(ko.toJSON(this));
-          window.location = "http://localhost"
+          window.location = "http://localhost:5000/show"
         }
       };
 

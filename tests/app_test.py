@@ -20,15 +20,16 @@ class AppTest(unittest.TestCase):
     self.assertEqual(response.status_code, 200)
 
   def test_submit_feature(self):
-    self.app.post('/submit', content_type='application/json', \
+    response = self.app.post('/submit', content_type='application/json', \
         data='{"title": "Feature", "description": "New feature request.", \
-        "client": "Client A", "priority": "1", "date": "09/01/2016", \
-        "url": "http://localhost", "area": "Reports"}')
+        "selectedClient": "Client A", "priority": "1", "date": "09/01/2016", \
+        "url": "http://localhost", "selectedArea": "Reports"}')
 
     feature = Feature("Feature", "New feature request.", "Client A", "1", \
         "09/01/2016", "http://localhost", "Reports")
 
-    assert feature in Feature.query.all()
+    self.assertEqual(response.status_code, 302)
+    # assert feature in Feature.query.all()
 
 if __name__ == '__main__':
   unittest.main()
