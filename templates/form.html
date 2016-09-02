@@ -29,7 +29,7 @@
         Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
         Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="(Optional)"></textarea>
         Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
-        Priority<input class="form-control" data-bind="value: priority" type="number" min=1 max=5>
+        Priority<input class="form-control" data-bind="value: priority" type="number" min=1 max=5 required>
         Target Date<input class="form-control" data-bind="textInput: date" type="date" placeholder="mm/dd/yyyy" required>
         Target URL<input class="form-control" data-bind="textInput: url" type="url" placeholder="Enter resource" required>
         Product Area<select class="form-control" data-bind="options: area, value: selectedArea"></select>
@@ -41,13 +41,13 @@
       var requestViewModel = {
         title: ko.observable(),
         description: ko.observable(),
-        client: ko.observableArray(['Client A', 'Client B', 'Client C']),
-        selectedClient: ko.observable(''),
+        client: ko.observableArray([null, 'Client A', 'Client B', 'Client C']),
+        selectedClient: ko.observable(),
         priority: ko.observable(1),
         date: ko.observable(),
         url: ko.observable(),
-        area: ko.observableArray(['Policies', 'Billing', 'Claims', 'Reports']),
-        selectedArea: ko.observable(''),
+        area: ko.observableArray([null, 'Policies', 'Billing', 'Claims', 'Reports']),
+        selectedArea: ko.observable(),
 
         request: function() {
           var url = "http://localhost:5000/submit"
@@ -55,7 +55,13 @@
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/json");
           var response = connection.send(ko.toJSON(this));
-          window.location = "http://localhost:5000/show"
+
+          var result = confirm("Request submitted.\n\nWould you like to enter another?");
+          if (result == true) {
+            window.location = "http://localhost:5000/";
+          } else {
+            window.location = "http://localhost:5000/show";
+          }
         }
       };
 

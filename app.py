@@ -27,7 +27,7 @@ def submit():
                 params['priority'], params['date'], params['url'], params['selectedArea'])
   db.session.add(feature)
   db.session.commit()
-  return redirect(url_for('show'))
+  return redirect(url_for('form'))
 
 @app.route("/show")
 def show():
