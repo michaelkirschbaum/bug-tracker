@@ -32,6 +32,7 @@
 
   Generate and run database migrations with:
 
+    'python manage.py db init'
     'python manage.py db migrate'  
     'python manage.py db upgrade'
 
