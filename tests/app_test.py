@@ -29,6 +29,7 @@ class AppTest(unittest.TestCase):
         "09/01/2016", "http://localhost", "Reports")
 
     self.assertEqual(response.status_code, 302)
+    self.assertEqual(response.location, "http://localhost/")
     # assert feature in Feature.query.all()
 
 if __name__ == '__main__':

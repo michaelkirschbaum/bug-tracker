@@ -16,10 +16,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
 
-    <div class="col-xs-4">
+    <div class="container">
       <form data-bind="submit: request">
         Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
-        Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="(Optional)"></textarea>
+        Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="Enter details"></textarea>
         Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
         Priority<input class="form-control" data-bind="value: priority" type="number" min=1 max=5 required>
         Target Date<input class="form-control" data-bind="textInput: date" type="date" placeholder="mm/dd/yyyy" required>
@@ -49,7 +49,7 @@
           var response = connection.send(ko.toJSON(this));
 
           alert("Request submitted.");
-          window.location = "http://localhost:5000/show";
+          window.location = "http://localhost:5000/";
         }
       };
 

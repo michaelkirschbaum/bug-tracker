@@ -29,9 +29,5 @@ def submit():
   db.session.commit()
   return redirect(url_for('form'))
 
-@app.route("/show")
-def show():
-  return render_template('query.html')
-
 if __name__ == "__main__":
   app.run()
