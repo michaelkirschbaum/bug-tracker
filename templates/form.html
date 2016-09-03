@@ -50,12 +50,8 @@
           connection.setRequestHeader("Content-type", "application/json");
           var response = connection.send(ko.toJSON(this));
 
-          var result = confirm("Request submitted.\n\nWould you like to enter another?");
-          if (result == true) {
-            window.location = "http://localhost:5000/";
-          } else {
-            window.location = "http://localhost:5000/show";
-          }
+          alert("Request submitted.");
+          window.location = "http://localhost:5000/show";
         }
       };
 
