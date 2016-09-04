@@ -9,6 +9,7 @@ from app import app
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from flask_login import UserMixin
 
 # configure database
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
@@ -39,6 +40,11 @@ class Feature(db.Model):
     self.date = date
     self.url = url
     self.area = area
+
+class trackerUser(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(32))
+    password = db.Column(db.String(32))
 
 if __name__ == '__main__':
     manager.run()

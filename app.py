@@ -5,21 +5,36 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request, redirect, url_for
-from flask.ext.login import LoginManager
+from flask_login import LoginManager
 
 # setup flask
 app = Flask(__name__)
 
 # setup user management
-login = LoginManager()
-login.init_app(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+from manage import db, Feature, trackerUser
 
 # routes
+@login_manager.user_loader
+def load_user(user_id):
+  return trackerUser.get(user_id)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  form = LoginForm(request.form)
+  if form.validate_on_submit():
+    user = trackerUser()
+    login_user(user)
+
+    flask.flash('Logged in successfully.')
+
+  return render_template('form')
+
 @app.route("/")
 def form():
   return render_template('form.html')
-
-from manage import db, Feature
 
 @app.route("/submit", methods=['POST'])
 def submit():

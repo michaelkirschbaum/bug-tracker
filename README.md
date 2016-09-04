@@ -4,15 +4,14 @@
 
 ## Dependencies
 
-  Flask
-  Flask-Migrate
-  Flask-Script
-  Flask-Login
-  Gunicorn
+  Flask  
+  Flask-Migrate  
+  Flask-Script  
+  Flask-Login  
   Python 2.7  
   SQLAlchemy  
-  Werkzeug
-  PostgreSQL
+  Werkzeug  
+  PostgreSQL  
   Knockout
 
 ## Setup
