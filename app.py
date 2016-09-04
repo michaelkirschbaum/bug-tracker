@@ -4,11 +4,14 @@
 Feature request server.
 '''
 
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_login import LoginManager, login_user
+from Login import LoginForm
 
 # setup flask
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'v.G8GyY*)>011nOp'
+app.debug = True
 
 # setup user management
 login_manager = LoginManager()
@@ -23,14 +26,11 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-  form = LoginForm(request.form)
+  form = LoginForm(csrf_enabled=False)
   if form.validate_on_submit():
-    user = trackerUser.query.filter_by(name=request.form['name']).first()
+    user = trackerUser.query.filter_by(name=request.form['email']).first()
     login_user(user)
-
-    flash('Logged in successfully.')
-
-  return render_template('form')
+  return render_template('form.html')
 
 @app.route("/")
 def form():

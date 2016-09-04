@@ -28,7 +28,7 @@
     <div class="container">
       <div class="col-md-8">
         <form data-bind="submit: request" id="feature-form">
-          Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
+          Title<input class="form-control" data-bind="textInput: title" placeholder="Enter descriptive name" required>
           Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="Enter specification"></textarea>
           Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
           Priority<input class="form-control" data-bind="value: priority" type="number" min=1 required>
@@ -40,8 +40,8 @@
       </div>
       <div class="col-md-4">
         <form data-bind="submit: request" id="login-form">
-          Email<input class="form-control" data-bind="textInput: email">
-          Password<input class="form-control" data-bind="textInput: password">
+          Email<input class="form-control" data-bind="textInput: email" required>
+          Password<input class="form-control" data-bind="textInput: password" type="password" required>
           <button type="submit">Login</button>
         </form><br>
 
@@ -87,6 +87,8 @@
               (window.location.port ? ":" + window.location.port : "") + "/login";
           var connection = new XMLHttpRequest();
           connection.open("POST", url, true);
+          connection.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          connection.send("name=request.form['email']&password=['password']");
         }
       };
 
