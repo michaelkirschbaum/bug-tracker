@@ -5,7 +5,7 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, login_required
 from Login import LoginForm
 
 # setup flask
@@ -16,6 +16,7 @@ app.debug = True
 # setup user management
 login_manager = LoginManager()
 login_manager.init_app(app)
+login_manager.login_view = "form.html"
 
 from manage import db, Feature, trackerUser
 
@@ -28,8 +29,11 @@ def load_user(user_id):
 def login():
   form = LoginForm(csrf_enabled=False)
   if form.validate_on_submit():
-    user = trackerUser.query.filter_by(name=request.form['email']).first()
+    user = trackerUser.query.filter_by(name=request.form['name']).first()
     login_user(user)
+
+  flash("Log in successful")
+
   return render_template('form.html')
 
 @app.route("/")
@@ -37,6 +41,7 @@ def form():
   return render_template('form.html')
 
 @app.route("/submit", methods=['POST'])
+@login_required
 def submit():
   # receive JSON object
   params = request.get_json()
@@ -62,6 +67,7 @@ def submit():
   return redirect(url_for('form'))
 
 @app.route("/show")
+@login_required
 def show(): pass
 
 if __name__ == "__main__":
