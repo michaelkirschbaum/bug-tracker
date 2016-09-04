@@ -23,7 +23,7 @@ from manage import db, Feature, trackerUser
 # routes
 @login_manager.user_loader
 def load_user(user_id):
-  return trackerUser.get(user_id)
+  return trackerUser.query.get(user_id)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -32,7 +32,7 @@ def login():
     user = trackerUser.query.filter_by(name=request.form['name']).first()
     login_user(user)
 
-  flash("Log in successful")
+    flash("Log in successful")
 
   return render_template('form.html')
 

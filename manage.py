@@ -42,9 +42,13 @@ class Feature(db.Model):
     self.area = area
 
 class trackerUser(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32))
-    password = db.Column(db.String(32))
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(32))
+  password = db.Column(db.String(32))
+
+  def __init__(self, name, password):
+    self.name = name
+    self.password = password
 
 if __name__ == '__main__':
     manager.run()

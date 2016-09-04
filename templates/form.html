@@ -43,11 +43,14 @@
           Email<input class="form-control" data-bind="textInput: email" required>
           Password<input class="form-control" data-bind="textInput: password" type="password" required>
           <button type="submit">Login</button>
-        </form><br>
+        </form>
+        {% if current_user.is_authenticated %}
+          Hi {{ current_user.name }}!
+        {% endif %}<br>
 
         <button type="submit">Last</button><br>
         <button type="submit">Client Requests</button><br>
-        <button type="submit">All Requests</button>
+        <button type="submit">All Requests</button><br>
       </div>
     </div>
 
