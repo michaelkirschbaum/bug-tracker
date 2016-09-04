@@ -34,33 +34,42 @@ class AppTest(unittest.TestCase):
 
   def test_priority_uniqueness(self):
     self.app.post('/submit', content_type='application/json', \
-        data='{"title": "Feature", "description": "New feature request.", \
+        data='{"title": "Feature 1", "description": "New feature request.", \
         "selectedClient": "Client A", "priority": 1, "date": "09/01/2016", \
         "url": "http://localhost", "selectedArea": "Reports"}')
 
     self.app.post('/submit', content_type='application/json', \
-        data='{"title": "Feature", "description": "New feature request.", \
+        data='{"title": "Feature 2", "description": "New feature request.", \
         "selectedClient": "Client A", "priority": 1, "date": "09/01/2016", \
         "url": "http://localhost", "selectedArea": "Reports"}')
 
     self.app.post('/submit', content_type='application/json', \
-        data='{"title": "Feature", "description": "New feature request.", \
+        data='{"title": "Feature 3", "description": "New feature request.", \
         "selectedClient": "Client B", "priority": 1, "date": "09/01/2016", \
         "url": "http://localhost", "selectedArea": "Reports"}')
 
     self.app.post('/submit', content_type='application/json', \
-        data='{"title": "Feature", "description": "New feature request.", \
+        data='{"title": "Feature 4", "description": "New feature request.", \
         "selectedClient": "Client A", "priority": 1, "date": "09/01/2016", \
         "url": "http://localhost", "selectedArea": "Reports"}')
 
-    features = Feature.query.filter_by(client='Client A').all()
-    priorities = map(lambda x: x.priority, features)
+    featuresA = Feature.query.filter_by(client='Client A').all()
+    priorities = map(lambda x: x.priority, featuresA)
 
-    self.assertEquals(len(set(priorities)), len(features))
+    self.assertEquals(len(set(priorities)), len(featuresA))
 
-    features = Feature.query.filter_by(client='Client B').first()
+    featuresB = Feature.query.filter_by(client='Client B').first()
 
-    self.assertEquals(features.priority, 1)
+    self.assertEquals(featuresB.priority, 1)
+
+    self.app.post('/submit', content_type='application/json', \
+        data='{"title": "Feature 5", "description": "New feature request.", \
+        "selectedClient": "Client A", "priority": 10, "date": "09/01/2016", \
+        "url": "http://localhost", "selectedArea": "Reports"}')
+
+    feature = Feature.query.filter_by(title="Feature 5").first()
+
+    self.assertEquals(feature.priority, len(featuresA) + 1)
 
 if __name__ == '__main__':
   unittest.main()

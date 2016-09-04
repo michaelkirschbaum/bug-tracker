@@ -31,7 +31,7 @@
           Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
           Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="Enter specification"></textarea>
           Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
-          Priority<input id="priority" class="form-control" data-bind="value: priority" type="number" required>
+          Priority<input id="priority" class="form-control" data-bind="value: priority" type="number" min=1 required>
           Target Date<input class="form-control" data-bind="textInput: date" type="date" placeholder="mm/dd/yyyy" required>
           Target URL<input class="form-control" data-bind="textInput: url" type="url" placeholder="Enter resource" required>
           Product Area<select class="form-control" data-bind="options: area, value: selectedArea"></select>
@@ -39,8 +39,10 @@
         </form>
       </div>
       <div class="col-md-4">
-        Login<br>
-        History
+        Login<br><br>
+        <button type="submit">Last</button><br>
+        <button type="submit">Client Requests</button><br>
+        <button type="submit">All Requests</button>
       </div>
     </div>
 
@@ -62,9 +64,8 @@
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/json");
           var res = connection.send(ko.toJSON(this));
-
           alert("Request submitted.");
-          window.location = "http://localhost:5000/submit";
+          window.location = "http://localhost:5000/";
         }
       };
 

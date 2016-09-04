@@ -5,10 +5,14 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request, redirect, url_for
-import json
+from flask.ext.login import LoginManager
 
 # setup flask
 app = Flask(__name__)
+
+# setup user management
+login = LoginManager()
+login.init_app(app)
 
 # routes
 @app.route("/")
@@ -41,6 +45,9 @@ def submit():
   db.session.add(feature)
   db.session.commit()
   return redirect(url_for('form'))
+
+@app.route("/show")
+def show(): pass
 
 if __name__ == "__main__":
   app.run()

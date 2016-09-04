@@ -7,11 +7,13 @@
   Flask
   Flask-Migrate
   Flask-Script
+  Flask-Login
   Gunicorn
   Python 2.7  
   SQLAlchemy  
   Werkzeug
   PostgreSQL
+  Knockout
 
 ## Setup
 
