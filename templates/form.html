@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Feature Tracker</title>
+    <title>Bug Tracker</title>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.slim.js" integrity="sha256-L6ppAjL6jgtRmfiuigeEE5AwNI2pH/X9IBbPyanJeZw=" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
     </style>
 
   </head>
-    <h1>Feature Tracker</h1>
+    <h1>Bug Tracker</h1>
 
   <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
@@ -27,11 +27,11 @@
 
     <div class="container">
       <div class="col-md-8">
-        <form data-bind="submit: request">
+        <form data-bind="submit: request" id="feature-form">
           Title<input class="form-control" data-bind="textInput: title" placeholder="Enter short, descriptive name" required>
           Description<textarea class="form-control" data-bind="value: description" rows="3" placeholder="Enter specification"></textarea>
           Client<select class="form-control" data-bind="options: client, value: selectedClient" placeholder="Select client"></select>
-          Priority<input id="priority" class="form-control" data-bind="value: priority" type="number" min=1 required>
+          Priority<input class="form-control" data-bind="value: priority" type="number" min=1 required>
           Target Date<input class="form-control" data-bind="textInput: date" type="date" placeholder="mm/dd/yyyy" required>
           Target URL<input class="form-control" data-bind="textInput: url" type="url" placeholder="Enter resource" required>
           Product Area<select class="form-control" data-bind="options: area, value: selectedArea"></select>
@@ -39,11 +39,12 @@
         </form>
       </div>
       <div class="col-md-4">
-        <form data-bind="submit: login">
+        <form data-bind="submit: request" id="login-form">
           Email<input class="form-control" data-bind="textInput: email">
           Password<input class="form-control" data-bind="textInput: password">
           <button type="submit">Login</button>
         </form><br>
+
         <button type="submit">Last</button><br>
         <button type="submit">Client Requests</button><br>
         <button type="submit">All Requests</button>
@@ -63,26 +64,34 @@
         selectedArea: ko.observable(),
 
         request: function() {
-          var url = "http://localhost:5000/submit"
+          var url = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/submit";
           var connection = new XMLHttpRequest();
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/json");
           var res = connection.send(ko.toJSON(this));
+
           alert("Request submitted.");
-          window.location = "http://localhost:5000/";
+          // Fixes #22
+          // var location = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
+          window.location = "http://localhost:5000/"
         }
       };
 
-      var userModel = {
-        name: ko.observable(),
+      var loginModel = {
+        email: ko.observable(),
         password: ko.observable(),
 
-        login: function() {
-          var url = "";
+        request: function() {
+          var url = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port : "") + "/login";
+          var connection = new XMLHttpRequest();
+          connection.open("POST", url, true);
         }
       };
 
-      ko.applyBindings(requestViewModel);
+      ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
+      ko.applyBindings(loginModel, document.getElementById('login-form'));
     </script>
   </body>
 </html>

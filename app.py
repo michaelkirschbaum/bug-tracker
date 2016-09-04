@@ -25,10 +25,10 @@ def load_user(user_id):
 def login():
   form = LoginForm(request.form)
   if form.validate_on_submit():
-    user = trackerUser()
+    user = trackerUser.query.filter_by(name=request.form['name']).first()
     login_user(user)
 
-    flask.flash('Logged in successfully.')
+    flash('Logged in successfully.')
 
   return render_template('form')
 

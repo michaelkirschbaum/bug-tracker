@@ -1,4 +1,4 @@
-# Feature Requests
+# Bug Tracker
 
   Store client feature requests. Supports scheduling priorities and due dates.
 
