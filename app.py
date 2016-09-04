@@ -22,6 +22,8 @@ def submit():
   # receive JSON object
   params = request.get_json()
 
+  # reorganize priorities
+
   # store new feature
   feature = Feature(params['title'], params['description'], params['selectedClient'], \
                 params['priority'], params['date'], params['url'], params['selectedArea'])
