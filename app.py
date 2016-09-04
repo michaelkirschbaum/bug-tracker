@@ -22,7 +22,18 @@ def submit():
   # receive JSON object
   params = request.get_json()
 
-  # reorganize priorities
+  # reorganize priorities if this feature takes precedence
+  features = Feature.query.filter_by(client=params['selectedClient'])\
+    .order_by(Feature.priority).all()
+
+  if params['priority'] > len(features):
+    params['priority'] = len(features) + 1
+  else:
+    for i, ftr in enumerate(features):
+      if params['priority'] == ftr.priority:
+        for ftr in features[i:]:
+          ftr.priority += 1
+        break
 
   # store new feature
   feature = Feature(params['title'], params['description'], params['selectedClient'], \
