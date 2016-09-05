@@ -36,6 +36,12 @@ def login():
 
   return render_template('form.html')
 
+@app.route('/logout')
+@login_required
+def logout():
+  logout_user()
+  return redirect('form')
+
 @app.route("/")
 def form():
   return render_template('form.html')
@@ -68,7 +74,8 @@ def submit():
 
 @app.route("/show")
 @login_required
-def show(): pass
+def show():
+  features = Feature.query.all()
 
 if __name__ == "__main__":
   app.run()
