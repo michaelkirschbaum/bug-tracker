@@ -6,6 +6,7 @@ Feature request server.
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager
+from LoginForm import LoginForm
 
 # setup flask
 app = Flask(__name__)
@@ -23,7 +24,8 @@ def load_user(user_id):
   return User.get(user_id)
 
 @app.route("/login", methods=['GET', 'POST'])
-def login(): pass
+def login():
+  form = LoginForm(request.form)
 
 @app.route("/logout")
 def logout(): pass
