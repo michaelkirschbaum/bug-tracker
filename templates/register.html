@@ -23,13 +23,15 @@
   <h1>Register</h1>
 
   <div class="container">
-    <form data-bind="submit: request">
-      Email<input class="form-control" data-bind="textInput: email" required>
-      Display Name<input class="form-control" data-bind="textInput: name" required>
-      Password<input class="form-control" data-bind="textInput: password" type="password" required>
-      Verify Password<input class="form-control" data-bind="textInput: verification" type="password" required>
-      <button type="submit" style="float: right;">Submit</button>
-    </form>
+    <div class="col-md-4">
+      <form data-bind="submit: request">
+        Email<input class="form-control" data-bind="textInput: email" required>
+        Display Name<input class="form-control" data-bind="textInput: name" required>
+        Password<input class="form-control" data-bind="textInput: password" type="password" required>
+        Verify Password<input class="form-control" data-bind="textInput: verification" type="password" required>
+        <button type="submit" style="float: right;">Submit</button>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -46,7 +48,7 @@
         connection.setRequestHeader("Content-type", "application/json");
         var res = connection.send(ko.toJSON(this));
 
-        // window.location =
+        window.location = "http://localhost:5000/";
       }
     };
 

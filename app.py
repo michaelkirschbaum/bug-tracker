@@ -5,60 +5,33 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import LoginManager, login_user, login_required
-from Login import LoginForm
 
 # setup flask
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'v.G8GyY*)>011nOp'
 app.debug = True
-
-# setup user management
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = "form.html"
 
 from manage import db, Feature, trackerUser
 
 # routes
-@login_manager.user_loader
-def load_user(user_id):
-  return trackerUser.query.get(user_id)
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-  form = LoginForm(csrf_enabled=False)
-  if form.validate_on_submit():
-    user = trackerUser.query.filter_by(name=request.form['name']).first()
-    login_user(user)
-
-    flash("Log in successful")
-
-  return redirect(url_for('form.html'))
-
-@app.route('/logout')
-@login_required
-def logout():
-  logout_user()
-  return redirect(url_for('form'))
-
 @app.route("/register")
 def register():
   return render_template('register.html')
 
+@app.route("/")
+def form():
+  return render_template('form.html')
+
 @app.route("/new", methods=['POST'])
 def new():
   params = request.get_json()
+
+  # verify passwords are equal
 
   user = trackerUser(params['email'], params['name'], params['password'])
   db.session.add(user)
   db.session.commit()
 
   return redirect(url_for('form'))
-
-@app.route("/")
-def form():
-  return render_template('form.html')
 
 @app.route("/submit", methods=['POST'])
 def submit():
@@ -87,7 +60,6 @@ def submit():
   return redirect(url_for('form'))
 
 @app.route("/show")
-@login_required
 def show():
   features = Feature.query.all()
 

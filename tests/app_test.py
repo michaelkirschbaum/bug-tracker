@@ -2,7 +2,7 @@ import os
 import unittest
 import tempfile
 from ..app import app
-from ..manage import db, Feature
+from ..manage import db, Feature, trackerUser
 
 class AppTest(unittest.TestCase):
   def setUp(self):
@@ -15,15 +15,27 @@ class AppTest(unittest.TestCase):
     db.session.remove()
     db.drop_all()
 
+  def test_register_form(self):
+    response = self.app.get('/register')
+    self.assertEqual(response.status_code, 200)
+
   def test_get_form(self):
     response = self.app.get('/')
     self.assertEqual(response.status_code, 200)
 
-  def test_register_form(self):
-    response = self.app.get('/register')
-    self.asssertEqual(response.status_code, 200)
+  def test_new_user(self):
+    res = self.app.post('/new', content_type='application/json', \
+        data='{"email": "mkirsch@rebooky.com", "name": "michaelkirschbaum", \
+        "password": "test_password"}')
 
-  def test_new_user(self): pass
+    self.assertEqual(res.status_code, 302)
+
+    user = trackerUser("mkirsch@rebooky.com", "michaelkirschbaum", "test_password")
+    user2 = trackerUser.query.get(1)
+
+    self.assertEqual(user.email, user2.email)
+    self.assertEqual(user.name, user2.name)
+    self.assertEqual(user.password, user2.password)
 
   def test_submit_feature(self):
     response = self.app.post('/submit', content_type='application/json', \
@@ -35,8 +47,13 @@ class AppTest(unittest.TestCase):
 
     feature = Feature("Feature", "New feature request.", "Client A", 1, \
         "09/01/2016", "http://localhost", "Reports")
+    feature2 = Feature.query.get(1)
 
-    # assert feature in db.session
+    self.assertEqual(feature.title, feature2.title)
+    self.assertEqual(feature.description, feature2.description)
+    self.assertEqual(feature.client, feature2.client)
+    self.assertEqual(feature.priority, feature2.priority)
+    self.assertEqual(feature.area, feature2.area)
 
   def test_priority_uniqueness(self):
     self.app.post('/submit', content_type='application/json', \
@@ -76,6 +93,8 @@ class AppTest(unittest.TestCase):
     feature = Feature.query.filter_by(title="Feature 5").first()
 
     self.assertEquals(feature.priority, len(featuresA) + 1)
+
+  def test_show(self): pass
 
 if __name__ == '__main__':
   unittest.main()
