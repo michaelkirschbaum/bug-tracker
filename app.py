@@ -42,6 +42,13 @@ def logout():
   logout_user()
   return redirect('form')
 
+@app.route("/register")
+def register():
+  return render_template('register.html')
+
+@app.route("/new")
+def new(): pass
+
 @app.route("/")
 def form():
   return render_template('form.html')
