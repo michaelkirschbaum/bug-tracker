@@ -43,10 +43,12 @@ class Feature(db.Model):
 
 class trackerUser(db.Model, UserMixin):
   id = db.Column(db.Integer, primary_key=True)
+  email = db.Column(db.String(32))
   name = db.Column(db.String(32))
   password = db.Column(db.String(32))
 
-  def __init__(self, name, password):
+  def __init__(self, email, name, password):
+    self.email = email
     self.name = name
     self.password = password
 

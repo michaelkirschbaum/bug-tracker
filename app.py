@@ -34,20 +34,27 @@ def login():
 
     flash("Log in successful")
 
-  return render_template('form.html')
+  return redirect(url_for('form.html'))
 
 @app.route('/logout')
 @login_required
 def logout():
   logout_user()
-  return redirect('form')
+  return redirect(url_for('form'))
 
 @app.route("/register")
 def register():
   return render_template('register.html')
 
-@app.route("/new")
-def new(): pass
+@app.route("/new", methods=['POST'])
+def new():
+  params = request.get_json()
+
+  user = trackerUser(params['email'], params['name'], params['password'])
+  db.session.add(user)
+  db.session.commit()
+
+  return redirect(url_for('form'))
 
 @app.route("/")
 def form():
@@ -76,6 +83,7 @@ def submit():
                 params['priority'], params['date'], params['url'], params['selectedArea'])
   db.session.add(feature)
   db.session.commit()
+
   return redirect(url_for('form'))
 
 @app.route("/show")

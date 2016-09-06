@@ -48,12 +48,12 @@
           {{ current_user.name }} is logged in.
         {% endif %}<br><br>
 
-        <button type="submit">Register</button><br>
+        <button id="register-button" type="submit">Register</button><br>
         <button type="submit">Last Request</button><br>
         <button type="submit">Requests per Client</button><br>
         <button type="submit">All Requests</button><br>
         <button type="submit">Administration</button><br>
-        <button type="submit" onclick="logout();">Logout</button><br>
+        <button type="submit">Logout</button><br>
       </div>
     </div>
 
@@ -92,23 +92,19 @@
           connection.open("POST", url, true);
           connection.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           var res = connection.send("name=mkirsch@rebooky.com&password=saifGhechodLysyipev>");
+
+          window.location = res.location.substring(0, res.location.length - 1) +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/";
         }
+      };
+
+      document.getElementById("register-button").onclick = function () {
+        window.location = window.location.protocol + "//" + window.location.hostname +
+            (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
       };
 
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
       ko.applyBindings(loginModel, document.getElementById('login-form'));
-
-      function logout() {
-        var logout = confirm("Are you sure you want to log out?");
-
-        if (logout == true) {
-          var url ="http://localhost:5000/logout";
-          var connection = new XMLHttpRequest();
-          connection.open("GET", url);
-          var res = connection.send();
-          window.location = "http://localhost:5000/"
-        }
-      }
     </script>
   </body>
 </html>

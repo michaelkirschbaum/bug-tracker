@@ -19,6 +19,12 @@ class AppTest(unittest.TestCase):
     response = self.app.get('/')
     self.assertEqual(response.status_code, 200)
 
+  def test_register_form(self):
+    response = self.app.get('/register')
+    self.asssertEqual(response.status_code, 200)
+
+  def test_new_user(self): pass
+
   def test_submit_feature(self):
     response = self.app.post('/submit', content_type='application/json', \
         data='{"title": "Feature", "description": "New feature request.", \
