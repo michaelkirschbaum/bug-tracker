@@ -1,1 +1,1 @@
-web: gunicorn feature-request.app:app
+web: gunicorn app:app
