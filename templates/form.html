@@ -50,7 +50,7 @@
 
         <button type="submit">Last Request</button><br>
         <button type="submit">Requests per Client</button><br>
-        <button type="submit">All Requests</button><br><br>
+        <button type="submit">All Requests</button><br>
         <button type="submit" onclick="logout();">Logout</button><br>
       </div>
     </div>
@@ -75,9 +75,6 @@
           connection.setRequestHeader("Content-type", "application/json");
           var res = connection.send(ko.toJSON(this));
 
-          alert("Request submitted.");
-          // Fixes #22
-          // var location = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
           window.location = "http://localhost:5000/"
         }
       };

@@ -47,7 +47,6 @@ def form():
   return render_template('form.html')
 
 @app.route("/submit", methods=['POST'])
-@login_required
 def submit():
   # receive JSON object
   params = request.get_json()
