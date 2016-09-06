@@ -39,7 +39,12 @@
         </form>
       </div>
       <div class="col-md-4">
-        <button type="submit">Login</button><br>
+        <form data-bind="submit: request" id="login-form">
+          Email<input class="form-control" data-bind="textInput: email" required>
+          Password<input class="form-control" data-bind="textInput: password" type="password" required>
+          <button type="submit" style="float: right;">Login</button>
+        </form><br>
+
         <button id="register-button" type="submit">Register</button><br>
         <button type="submit">Last Request</button><br>
         <button type="submit">Requests per Client</button><br>
@@ -72,6 +77,22 @@
           window.location = "http://localhost:5000/"
         }
       };
+
+      var loginViewModel = {
+        email: ko.observable(),
+        password: ko.observable(),
+
+        request: function() {
+          var url = window.location.protocol + "//" window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/login"
+          var conn = new XMLHttpRequest();
+          conn.open("POST", url, true);
+          conn.setRequestHeader("Content-Type", "application/json")
+          var res = conn.send(ko.toJSON(this));
+
+          window.location = "http://localhost:5000/"
+        }
+      }
 
       document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +

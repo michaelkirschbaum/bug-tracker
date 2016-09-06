@@ -47,6 +47,9 @@ class trackerUser(db.Model, UserMixin):
   name = db.Column(db.String(32))
   password = db.Column(db.String(32))
 
+  def get_id(self):
+    return unicode(self.id)
+
   def __init__(self, email, name, password):
     self.email = email
     self.name = name
