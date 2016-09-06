@@ -15,6 +15,10 @@ class AppTest(unittest.TestCase):
     db.session.remove()
     db.drop_all()
 
+  def test_login(self): pass
+
+  def test_logout(self): pass
+
   def test_register_form(self):
     response = self.app.get('/register')
     self.assertEqual(response.status_code, 200)
