@@ -34,10 +34,15 @@ def login():
   return redirect(url_for('form'))
 
 @app.route("/logout")
+@login_required
 def logout():
   logout_user()
 
   return redirect(url_for('form'))
+
+@app.route("/administer")
+@login_required
+def administer(): pass
 
 @app.route("/register")
 def register():
@@ -62,6 +67,7 @@ def new():
   return redirect(url_for('form'))
 
 @app.route("/submit", methods=['POST'])
+@login_required
 def submit():
   # receive JSON object
   params = request.get_json()
@@ -88,8 +94,9 @@ def submit():
   return redirect(url_for('form'))
 
 @app.route("/show")
+@login_required
 def show():
-  features = Feature.query.all()
+  return render_template('query.html', features=Feature.query.all())
 
 if __name__ == "__main__":
   app.run()
