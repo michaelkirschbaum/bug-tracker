@@ -4,31 +4,22 @@
 Feature request server.
 '''
 
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_login import LoginManager
-from LoginForm import LoginForm
+from flask import Flask, render_template, request, redirect, url_for
 
 # setup flask
 app = Flask(__name__)
 app.debug = True
 
-# setup login management
-login_manager = LoginManager()
-login_manager.init_app(app)
-
 from manage import db, Feature, trackerUser
 
 # routes
-@login_manager.user_loader
-def load_user(user_id):
-  return User.get(user_id)
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-  form = LoginForm(request.form)
+  return redirect(url_for('form'))
 
 @app.route("/logout")
-def logout(): pass
+def logout():
+  return redirect(url_for('form'))
 
 @app.route("/register")
 def register():
