@@ -11,6 +11,11 @@ class AppTest(unittest.TestCase):
     self.app = app.test_client()
     db.create_all()
 
+    # login user
+    self.app.post('/new', content_type='application/json', \
+        data='{"email": "testuser@gmail.com", "name": "test", \
+        "password": "test_password"}')
+
   def tearDown(self):
     db.session.remove()
     db.drop_all()
@@ -32,13 +37,7 @@ class AppTest(unittest.TestCase):
     self.assertEqual(response.status_code, 200)
 
   def test_new_user(self):
-    res = self.app.post('/new', content_type='application/json', \
-        data='{"email": "mkirsch@rebooky.com", "name": "michaelkirschbaum", \
-        "password": "test_password"}')
-
-    self.assertEqual(res.status_code, 302)
-
-    user = trackerUser("mkirsch@rebooky.com", "michaelkirschbaum", "test_password")
+    user = trackerUser("testuser@gmail.com", "test", "test_password")
     user2 = trackerUser.query.get(1)
 
     self.assertEqual(user.email, user2.email)
