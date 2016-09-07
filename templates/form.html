@@ -79,7 +79,7 @@
           connection.send(ko.toJSON(this));
 
           window.location = res.location.substring(0, res.location.length - 1) +
-              (window.location.port ? ":" window.location.port.toString() : "") + "/";
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/";
         }
       };
 
@@ -96,7 +96,7 @@
           connection.send("email=" + this.email() + "&password=" + this.password());
 
           window.location = res.location.substring(0, res.location.length - 1) +
-              (window.location.port ? ":" window.location.port.toString() : "") + "/";
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/";
         }
       };
 
