@@ -48,7 +48,8 @@
         connection.setRequestHeader("Content-type", "application/json");
         var res = connection.send(ko.toJSON(this));
 
-        window.location = "http://localhost:5000/";
+        window.location = res.location.substring(0, res.location.length - 1) +
+            (window.location.port ? ":" window.location.port.toString() : "") + "/";
       }
     };
 

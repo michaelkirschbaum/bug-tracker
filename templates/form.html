@@ -77,6 +77,9 @@
           connection.open("POST", url, false);
           connection.setRequestHeader("Content-type", "application/json");
           connection.send(ko.toJSON(this));
+
+          window.location = res.location.substring(0, res.location.length - 1) +
+              (window.location.port ? ":" window.location.port.toString() : "") + "/";
         }
       };
 
@@ -92,7 +95,8 @@
           connection.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
           connection.send("email=" + this.email() + "&password=" + this.password());
 
-          window.location = "http://localhost:5000/"
+          window.location = res.location.substring(0, res.location.length - 1) +
+              (window.location.port ? ":" window.location.port.toString() : "") + "/";
         }
       };
 
