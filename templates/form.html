@@ -50,9 +50,13 @@
         <button type="submit">Requests per Client</button><br>
         <button type="submit">All Requests</button><br>
         <button type="submit">Administration</button><br>
-        <button type="submit">Logout</button><br>
+        <button id="logout" type="submit">Logout</button><br>
       </div>
     </div>
+
+    {% if current_user.is_authenticated %}
+      Hi {{ current_user.name }}!
+    {% endif %}
 
     <script type="text/javascript">
       var requestViewModel = {
@@ -70,11 +74,9 @@
           var url = window.location.protocol + "//" + window.location.hostname +
               (window.location.port ? ":" + window.location.port.toString() : "") + "/submit";
           var connection = new XMLHttpRequest();
-          connection.open("POST", url, true);
+          connection.open("POST", url, false);
           connection.setRequestHeader("Content-type", "application/json");
-          var res = connection.send(ko.toJSON(this));
-
-          window.location = "http://localhost:5000/"
+          connection.send(ko.toJSON(this));
         }
       };
 
@@ -86,17 +88,20 @@
           var url = window.location.protocol + "//" + window.location.hostname +
               (window.location.port ? ":" + window.location.port.toString() : "") + "/login";
           var connection = new XMLHttpRequest();
-          connection.open("POST", url, true);
-          connection.setRequestHeader("Content-type", "application/json");
-          var res = connection.send(ko.toJSON(this));
-
-          window.location = "http://localhost:5000/"
+          connection.open("POST", url, false);
+          connection.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          connection.send("email=mkirsch@rebooky.com&password=beethoven4@");
         }
       };
 
       document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
+      };
+
+      document.getElementById("logout").onclick = function () {
+        window.location = window.location.protocol + "//" + window.location.hostname +
+            (window.location.port ? ":" + window.location.port.toString() : "") + "/logout";
       };
 
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));

@@ -52,5 +52,8 @@ class trackerUser(db.Model, UserMixin):
     self.name = name
     self.password = password
 
+  def get_id(self):
+    return unicode(self.id)
+
 if __name__ == '__main__':
     manager.run()
