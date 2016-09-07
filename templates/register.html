@@ -44,7 +44,7 @@
         var url = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/new";
         var connection = new XMLHttpRequest();
-        connection.open("POST", url, true);
+        connection.open("POST", url, false);
         connection.setRequestHeader("Content-type", "application/json");
         var res = connection.send(ko.toJSON(this));
 

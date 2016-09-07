@@ -5,7 +5,7 @@ Feature request server.
 '''
 
 from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required
+from flask_login import LoginManager, login_user, login_required, logout_user
 from login import LoginForm
 
 # setup flask
@@ -28,12 +28,15 @@ def load_user(user_id):
 def login():
   form = LoginForm(csrf_enabled=False)
   if form.validate_on_submit():
-    login_user(trackerUser.query.get(10))
+    user = trackerUser.query.filter_by(email=request.form['email']).first()
+    login_user(user)
 
   return redirect(url_for('form'))
 
 @app.route("/logout")
 def logout():
+  logout_user()
+
   return redirect(url_for('form'))
 
 @app.route("/register")
@@ -53,6 +56,8 @@ def new():
   user = trackerUser(params['email'], params['name'], params['password'])
   db.session.add(user)
   db.session.commit()
+
+  login_user(user)
 
   return redirect(url_for('form'))
 
