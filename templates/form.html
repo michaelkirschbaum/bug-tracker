@@ -49,7 +49,6 @@
         </form><br>
 
         <button id="register-button" type="submit">Register</button><br>
-        <button id="all-requests" type="submit">Last Request</button><br>
         <button id="client-requests" type="submit">Requests per Client</button><br>
         <button id="last-request" type="submit">All Requests</button><br>
         <button id="administer" type="submit">Administration</button><br>
@@ -115,11 +114,6 @@
       };
 
       document.getElementById("client-requests").onclick = function () {
-        window.location = window.location.protocol + "//" + window.location.hostname +
-            (window.location.port ? ":" + window.location.port.toString() : "") + "/show";
-      };
-
-      document.getElementById("last-request").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/show";
       };

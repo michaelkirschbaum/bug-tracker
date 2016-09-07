@@ -98,5 +98,10 @@ def submit():
 def show():
   return render_template('query.html', features=Feature.query.all())
 
+@app.route("/show/<client>")
+@login_required
+def show_client():
+  return render_template('query.html', features=Feature.query.filter_by(client).all())
+
 if __name__ == "__main__":
   app.run()
