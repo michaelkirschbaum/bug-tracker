@@ -96,17 +96,17 @@ def submit():
 
 @app.route("/requests/<request>")
 @login_required
-def show_request():
+def get_request(request):
   return render_template('query.html', features=Feature.query.filter_by(title=request).first())
 
 @app.route("/clients/<client>")
 @login_required
-def show_client():
+def get_client_requests(client):
   return render_template('query.html', features=Feature.query.filter_by(client=client).order_by(Feature.priority).all())
 
 @app.route("/requests")
 @login_required
-def show():
+def all_requests():
   return render_template('query.html', features=Feature.query.all())
 
 if __name__ == "__main__":
