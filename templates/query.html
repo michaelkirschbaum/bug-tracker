@@ -18,8 +18,10 @@
           <tr>
             <th>Priority</th>
             <th>Title</th>
+            <th>Description</th>
             <th>Client</th>
             <th>Due Date</th>
+            <th>URL</th>
             <th>Area</th>
           </tr>
         </thead>
@@ -28,8 +30,10 @@
             <tr>
               <td>{{ feature.priority }}</td>
               <td>{{ feature.title }}</td>
+              <td>{{ feature.description }}</td>
               <td>{{ feature.client }}</td>
               <td>{{ feature.date }}</td>
+              <td>{{ feature.url}}</td>
               <td>{{ feature.area }}</td>
             </tr>
           {% endfor %}
