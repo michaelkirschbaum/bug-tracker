@@ -51,6 +51,7 @@
         </form><br><br>
         <div class="button-group">
           <button id="register-button" type="submit">Register</button><br><br>
+          <button id="register-button" type="submit">Request</button><br><br>
           <button id="client-requests" type="submit">Requests by Client</button><br><br>
           <button id="all-requests" type="submit">All Requests</button><br><br>
           <button id="administer" type="submit">Administration</button><br><br>
@@ -111,6 +112,11 @@
             (window.location.port ? ":" + window.location.port.toString() : "") + "/logout";
       };
 
+      document.getElementById("client-requests").onclick = function () {
+        window.location = window.location.protocol + "//" + window.location.hostname +
+            (window.location.port ? ":" + window.location.port.toString() : "") + "/show";
+      };
+
       document.getElementById("all-requests").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/show";
@@ -129,5 +135,9 @@
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
       ko.applyBindings(loginViewModel, document.getElementById('login-form'));
     </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js" integrity="sha384-ux8v3A6CPtOTqOzMKiuo3d/DomGaaClxFYdCu2HPMBEkf6x2xiDyJ7gkXU0MWwaD" crossorigin="anonymous"></script>
   </body>
 </html>
