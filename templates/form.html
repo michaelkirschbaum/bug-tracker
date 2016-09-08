@@ -52,10 +52,10 @@
         <div class="button-group">
           <button id="register-button" type="submit">Register</button><br><br>
 
-	  <form data-bind="submit: search" id="search-form">
-	    <input class="form-control" data-bind="textInput: title" placeholder="Enter bug title" required>
- 	    <button type="submit">Search</button>
-	  </form><br>
+	        <form data-bind="submit: search" id="search-form">
+	          <input class="form-control" data-bind="textInput: title" placeholder="Enter feature title" required>
+ 	          <button type="submit">Search</button>
+	        </form><br>
 
           <button id="all-requests" type="submit">All Requests</button><br><br>
           <button id="administer" type="submit">Administration</button><br><br>
@@ -109,16 +109,16 @@
       var searchViewModel = {
         title: ko.observable(),
 
-        request: search: function() {
+        search: function() {
           window.location = window.location.protocol + "//" + window.location.hostname +
               (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.title();
         }
       };
 
-      $("#register-button").on('click', function () {
+      document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
-      }); 
+      };
 
       document.getElementById("logout").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
