@@ -58,7 +58,6 @@
 	        </form><br>
 
           <button id="all-requests" type="submit">All Requests</button><br><br>
-          <button id="administer" type="submit">Administration</button><br><br>
           <button id="logout" type="submit">Logout</button>
         </div>
       </div>
@@ -128,11 +127,6 @@
       document.getElementById("all-requests").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/requests";
-      };
-
-      document.getElementById("administer").onclick = function () {
-        window.location = window.location.protocol + "//" + window.location.hostname +
-            (window.location.port ? ":" + window.location.port.toString() : "") + "/administer";
       };
 
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
