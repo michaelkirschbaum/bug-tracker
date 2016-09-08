@@ -124,7 +124,7 @@
       };
 
       var clientViewModel = {
-        client: requestViewModel.client(),
+        client: ko.observableArray([null, 'Client A', 'Client B', 'Client C']),
         selectedClient: ko.observable(),
 
         request: function() {
