@@ -57,7 +57,7 @@
             <button type="submit">Search</button>
           <form><br><br>
 
-          <form data-bind="submit: request" id="client_requests">
+          <form data-bind="submit: request" id="client-requests">
             <select class="form-control" data-bind="options: client, value: selectedClient"></select>
             <button type="submit">Requests by Client</button>
           </form><br><br>
@@ -111,6 +111,31 @@
         }
       };
 
+      var searchViewModel = {
+        title: ko.observable(),
+
+        search: function() {
+          var url = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.title();
+          var connection = new XMLHttpRequest();
+          connection.open("GET", url);
+          connection.send();
+        }
+      };
+
+      var clientViewModel = {
+        client: requestViewModel.client(),
+        selectedClient: ko.observable(),
+
+        request: function() {
+          var url = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.selectedClient();
+          var connection = new XMLHttpRequest();
+          connection.open("GET", url);
+          connection.send();
+        }
+      };
+
       document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
@@ -133,6 +158,8 @@
 
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
       ko.applyBindings(loginViewModel, document.getElementById('login-form'));
+      ko.applyBindings(searchViewModel, document.getElementById('request-search'));
+      ko.applyBindings(clientViewModel, document.getElementById('client-requests'));
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>

@@ -98,7 +98,7 @@ def submit():
 @app.route("/show/<request>")
 @login_required
 def show_request():
-  return render_template('query.html', features=Feature.query.filter_by(title=title).first())
+  return render_template('query.html', features=Feature.query.filter_by(title=request).first())
 
 @app.route("/show/<client>")
 @login_required
