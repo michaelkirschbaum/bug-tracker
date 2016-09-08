@@ -40,11 +40,6 @@ def logout():
 
   return redirect(url_for('form'))
 
-@app.route("/administer")
-@login_required
-def administer():
-  return render_template('administration.html')
-
 @app.route("/register")
 def register():
   return render_template('register.html')
