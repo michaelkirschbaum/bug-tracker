@@ -111,7 +111,7 @@
 
         search: function() {
           window.location = window.location.protocol + "//" + window.location.hostname +
-              (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.title();
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/requests/" + this.title();
         }
       };
 
@@ -127,7 +127,7 @@
 
       document.getElementById("all-requests").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
-            (window.location.port ? ":" + window.location.port.toString() : "") + "/show";
+            (window.location.port ? ":" + window.location.port.toString() : "") + "/requests";
       };
 
       document.getElementById("administer").onclick = function () {

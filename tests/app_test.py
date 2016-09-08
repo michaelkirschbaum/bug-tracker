@@ -101,7 +101,7 @@ class AppTest(unittest.TestCase):
 
     self.assertEquals(feature.priority, len(featuresA) + 1)
 
-  def test_show(self): pass
+  def test_request_display(self): pass
 
 if __name__ == '__main__':
   unittest.main()
