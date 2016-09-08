@@ -115,11 +115,8 @@
         title: ko.observable(),
 
         search: function() {
-          var url = window.location.protocol + "//" + window.location.hostname +
+          window.location = window.location.protocol + "//" + window.location.hostname +
               (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.title();
-          var connection = new XMLHttpRequest();
-          connection.open("GET", url);
-          connection.send();
         }
       };
 
@@ -128,11 +125,8 @@
         selectedClient: ko.observable(),
 
         request: function() {
-          var url = window.location.protocol + "//" + window.location.hostname +
+          window.location = window.location.protocol + "//" + window.location.hostname +
               (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.selectedClient();
-          var connection = new XMLHttpRequest();
-          connection.open("GET", url);
-          connection.send();
         }
       };
 
