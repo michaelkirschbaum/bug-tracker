@@ -94,15 +94,20 @@ def submit():
 
   return redirect(url_for('form'))
 
-@app.route("/show")
+@app.route("/show/<request>")
 @login_required
-def show():
-  return render_template('query.html', features=Feature.query.all())
+def show_request():
+  return render_template('query.html', features=Feature.query.filter_by(title=title).first())
 
 @app.route("/show/<client>")
 @login_required
 def show_client():
   return render_template('query.html', features=Feature.query.filter_by(client=client).order_by(Feature.priority).all())
+
+@app.route("/show")
+@login_required
+def show():
+  return render_template('query.html', features=Feature.query.all())
 
 if __name__ == "__main__":
   app.run()
