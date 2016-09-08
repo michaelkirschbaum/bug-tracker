@@ -5,6 +5,8 @@
     <title>Features</title>
   </head>
   <body>
-    {{ features }}
+    {% for feature in features %}
+      {{ feature.title }}
+    {% endfor %}
   </body>
 </html>

@@ -42,7 +42,8 @@ def logout():
 
 @app.route("/administer")
 @login_required
-def administer(): pass
+def administer():
+  return render_template('administration.html')
 
 @app.route("/register")
 def register():
@@ -101,7 +102,7 @@ def show():
 @app.route("/show/<client>")
 @login_required
 def show_client():
-  return render_template('query.html', features=Feature.query.filter_by(client).all())
+  return render_template('query.html', features=Feature.query.filter_by(client=client).order_by(Feature.priority).all())
 
 if __name__ == "__main__":
   app.run()

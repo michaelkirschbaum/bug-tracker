@@ -42,17 +42,19 @@
         <form data-bind="submit: request" id="login-form">
           Email<input class="form-control" data-bind="textInput: email" required>
           Password<input class="form-control" data-bind="textInput: password" type="password" required>
+
           {% if current_user.is_authenticated %}
             Hi {{ current_user.name }}, you are now logged in.
           {% endif %}
+
           <button type="submit" style="float: right;">Login</button>
         </form><br>
 
         <button id="register-button" type="submit">Register</button><br>
-        <button id="client-requests" type="submit">Requests per Client</button><br>
-        <button id="last-request" type="submit">All Requests</button><br>
+        <button id="client-requests" type="submit">Requests by Client</button><br>
+        <button id="all-requests" type="submit">All Requests</button><br>
         <button id="administer" type="submit">Administration</button><br>
-        <button id="logout" type="submit">Logout</button><br>
+        <button id="logout" type="submit">Logout</button>
       </div>
     </div>
 
