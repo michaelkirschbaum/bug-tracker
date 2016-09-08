@@ -51,6 +51,17 @@
         </form><br><br>
         <div class="button-group">
           <button id="register-button" type="submit">Register</button><br><br>
+
+          <form data-bind="submit: search" id="search-form">
+            <input class="form-control" data-bind="textInput: title" placeholder="Enter feature title" required>
+            <button type="submit">Search</button>
+          </form><br><br>
+
+          <form data-bind="submit: client_search" id="client-search-form">
+            <select class="form-control" data-bind="options: clients, value: selectedClient"></select>
+            <button type="submit">Requests</button>
+          </form><br><br>
+
           <button id="all-requests" type="submit">All Requests</button><br><br>
           <button id="administer" type="submit">Administration</button><br><br>
           <button id="logout" type="submit">Logout</button>
@@ -100,6 +111,25 @@
         }
       };
 
+      var searchViewModel = {
+        title: ko.observable(),
+
+        search: function() {
+          window.location = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.title();
+        }
+      };
+
+      var clientViewModel = {
+        clients: ko.observableArray([null, 'Client A', 'Client B', 'Client C']),
+        selectedClient(): ko.observable(),
+
+        client_search: function() {
+          window.location = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/show/" + this.selectedClient();
+        }
+      };
+
       document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
@@ -122,6 +152,9 @@
 
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
       ko.applyBindings(loginViewModel, document.getElementById('login-form'));
+      ko.applyBindings(searchViewModel, document.getElementById('search-form'));
+      ko.applyBindings(clientViewModel, document.getElementById('client-search-form'));
+
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
