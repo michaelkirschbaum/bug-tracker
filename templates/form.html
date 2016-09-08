@@ -114,6 +114,16 @@
         }
       };
 
+      var clientViewModel = {
+        clients = ko.observable(),
+        selectedClient: ko.observableArray([null, 'Client A', 'Client B', 'Client C']),
+
+        client_search: function() {
+          window.location = window.location.protocol + "//" + window.location.hostname +
+              (window.location.port ? ":" + window.location.port.toString() : "") + "/clients/" + this.selectedClient();
+        }
+      };
+
       document.getElementById("register-button").onclick = function () {
         window.location = window.location.protocol + "//" + window.location.hostname +
             (window.location.port ? ":" + window.location.port.toString() : "") + "/register";
@@ -137,6 +147,7 @@
       ko.applyBindings(requestViewModel, document.getElementById('feature-form'));
       ko.applyBindings(loginViewModel, document.getElementById('login-form'));
       ko.applyBindings(searchViewModel, document.getElementById('search-form'));
+      ko.applyBindings(clientViewModel, document.getElementById('client-search-form'))
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
