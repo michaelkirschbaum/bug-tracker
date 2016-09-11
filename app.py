@@ -10,7 +10,7 @@ from login import LoginForm
 
 # setup flask
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret key' # change
+app.config['SECRET_KEY'] = 'v.G8GyY*)>011nO"'
 app.debug = True
 
 # setup login management
