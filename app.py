@@ -46,13 +46,11 @@ def register():
 
 @app.route("/")
 def form():
-  return render_template('form.html')
+  return render_template('index.html')
 
 @app.route("/new", methods=['POST'])
 def new():
   params = request.get_json()
-
-  # verify passwords are equal
 
   user = trackerUser(params['email'], params['name'], params['password'])
   db.session.add(user)
