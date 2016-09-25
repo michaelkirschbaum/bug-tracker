@@ -3,3 +3,4 @@
 pkg-config
 libxml2-dev
 libxmlsec1-dev
+swig
