@@ -46,7 +46,7 @@ def register():
 
 @app.route("/")
 def form():
-  return render_template('index.html')
+  return render_template('form.html')
 
 @app.route("/new", methods=['POST'])
 def new():

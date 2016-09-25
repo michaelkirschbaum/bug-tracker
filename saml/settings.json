@@ -1,0 +1,30 @@
+{
+    "strict": true,
+    "debug": true,
+    "sp": {
+        "entityId": "https://https://bug-track.herokuapp.com/metadata/",
+        "assertionConsumerService": {
+            "url": "https://https://bug-track.herokuapp.com/?acs",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+        },
+        "singleLogoutService": {
+            "url": "https://https://bug-track.herokuapp.com/?sls",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "NameIDFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+        "x509cert": "",
+        "privateKey": ""
+    },
+    "idp": {
+        "entityId": "https://app.onelogin.com/saml/metadata/588995",
+        "singleSignOnService": {
+            "url": "https://rebooky-dev.onelogin.com/trust/saml2/http-post/sso/588995",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "singleLogoutService": {
+            "url": "https://rebooky-dev.onelogin.com/trust/saml2/http-post/sso/588995",
+            "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+        },
+        "x509cert": "MIIEFDCCAvygAwIBAgIUO9rnrbysr9z6XEb6J0yvzfX276cwDQYJKoZIhvcNAQEFBQAwVzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1JlYm9va3kxFTATBgNVBAsMDE9uZUxvZ2luIElkUDEfMB0GA1UEAwwWT25lTG9naW4gQWNjb3VudCA5Mjc2MjAeFw0xNjA5MjQxOTUwNDFaFw0yMTA5MjUxOTUwNDFaMFcxCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdSZWJvb2t5MRUwEwYDVQQLDAxPbmVMb2dpbiBJZFAxHzAdBgNVBAMMFk9uZUxvZ2luIEFjY291bnQgOTI3NjIwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDXoScOOCkevXPKPnJTk1R96jURKUjGM92ynobZNsnEic19VNCiMpCp4hABOg40yE2j0yvzuer1b8QTo81QAXRc73hjNoqnB4FDwdg2mDnwTkZoccFx8e15uDqGMA/umD528xKWvIce8oYSXV2S9vPFPAxGrtVirD5bLhmwFdg86zaS35WhYbDkjmNCFYEjoHUj0y5coH+S/wB1+rj5Ed/zxOhfxmXke4TlW3PoqJMFbMzCY0ddno/MMaviKQUtc/WxVcPd+6RkoEnkCRq0ICw9TgvVnAtP+2NIxUsC5vGTL6xHukdC9+eVJfobaXktBTxoJAI4FJWlGPQWdlvoeGiFAgMBAAGjgdcwgdQwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUbqjNEwlk0wSq3pPCNPVnQc6bAd8wgZQGA1UdIwSBjDCBiYAUbqjNEwlk0wSq3pPCNPVnQc6bAd+hW6RZMFcxCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdSZWJvb2t5MRUwEwYDVQQLDAxPbmVMb2dpbiBJZFAxHzAdBgNVBAMMFk9uZUxvZ2luIEFjY291bnQgOTI3NjKCFDva5628rK/c+lxG+idMr8319u+nMA4GA1UdDwEB/wQEAwIHgDANBgkqhkiG9w0BAQUFAAOCAQEAH3uVjEcKGyXGKAOcIq3fFOqeUjfDRY5g5xNxvcNI/Ak/vANkjD6KuV8fude2IVx7TMMzP0iGS4/nnku/jDltTHiiuKPlu9eM0ZZqyf22cMxz1+bCtF6L7bS3WzEnVgb3Z9c9yOfcyC4nHg7lbUvQRVkvrlBnYBAEB7VNjMguCRquVy4WckNm0qLIyITvZPfKXTjri53qeKYqZ1+6ffBJ8olQZ8WbgNNRPFdO/1/KNX87YENUiMrJCBrHKK0wBVHmXhZ5fIeZ06PBza2G+2WiJ2tSVXSsh4LkAVR95vxx3qPQCNurVaZT3z8GdkPcmy/P1HjTvZFp47w2NGbGOjYcPA=="
+    }
+}
