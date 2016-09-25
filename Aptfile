@@ -1,5 +1,5 @@
 # Aptfile
 
 pkg-config
-libxmlsec1
+libxml2-dev
 libxmlsec1-dev
